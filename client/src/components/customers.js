@@ -10,8 +10,9 @@ class Customers extends Component {
   }
 
   componentDidMount() {
-    const res = fetch("/api/hello");
-    return res.json();
+    fetch("/api/hello")
+      .then(res => res.json())
+      .then(res => console.log(res));
     // fetch("/api/customers")
     //   .then(res => res.json())
     //   .then(customers =>
