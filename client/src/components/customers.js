@@ -10,16 +10,18 @@ class Customers extends Component {
   }
 
   componentDidMount() {
-    fetch("/api/customers")
-      .then(res => res.json())
-      .then(customers =>
-        this.setState({ customers }, () =>
-          console.log("Customers fetched...", customers)
-        )
-      )
-      .catch(err => {
-        console.log(err);
-      });
+    const res = fetch("/api/hello");
+    return res.json();
+    // fetch("/api/customers")
+    //   .then(res => res.json())
+    //   .then(customers =>
+    //     this.setState({ customers }, () =>
+    //       console.log("Customers fetched...", customers)
+    //     )
+    //   )
+    //   .catch(err => {
+    //     console.log(err);
+    //   });
   }
 
   render() {

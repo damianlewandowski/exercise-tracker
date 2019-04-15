@@ -16,6 +16,10 @@ if (process.env.NODE_ENV === "production") {
   );
 }
 
+app.get("/api/hello", (req, res) => {
+  res.send({ express: "Hello From Express" });
+});
+
 app.get("/api/customers", (req, res) => {
   const customers = [
     { id: 1, firstName: "John", lastName: "Doe" },
