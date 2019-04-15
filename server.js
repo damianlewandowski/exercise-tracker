@@ -5,17 +5,6 @@ const PORT = process.env.PORT || 5000;
 
 const app = express();
 
-//
-// Production
-//
-if (process.env.NODE_ENV === "production") {
-  // Look for static files in "client/build" folder
-  app.use(express.static(path.join(__dirname, "client/build")));
-  app.get("*", (req, res) =>
-    res.sendfile(path.join(__dirname, "client/build/index.html"))
-  );
-}
-
 app.get("/api/hello", (req, res) => {
   res.send({ express: "Hello From Express" });
 });
@@ -29,5 +18,16 @@ app.get("/api/customers", (req, res) => {
 
   res.json(customers);
 });
+
+//
+// Production
+//
+if (process.env.NODE_ENV === "production") {
+  // Look for static files in "client/build" folder
+  app.use(express.static(path.join(__dirname, "client/build")));
+  app.get("*", (req, res) =>
+    res.sendfile(path.join(__dirname, "client/build/index.html"))
+  );
+}
 
 app.listen(PORT, () => `Server running on port ${PORT}`);
