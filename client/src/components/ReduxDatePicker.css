@@ -1,0 +1,9 @@
+.ReduxDatePicker .invalid-feedback {
+  display: block;
+}
+
+.redux-date-picker,
+.redux-date-picker > div.react-datepicker-wrapper,
+.redux-date-picker > div > div.react-datepicker__input-container {
+  width: 100%;
+}

@@ -1,8 +1,11 @@
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import "react-datepicker/dist/react-datepicker.css";
+
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./App";
-import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import registerServiceWorker from "./registerServiceWorker";
+import Root from "./Root";
+import store from "./store";
 
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(<Root store={store} />, document.getElementById("root"));
 registerServiceWorker();

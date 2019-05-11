@@ -1,27 +1,28 @@
 const express = require("express");
 const path = require("path");
+const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
+
+// Load environment variables from .env.
+// On production you want to specify those variables by hand.
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+}
 
 const PORT = process.env.PORT || 5000;
 
 const app = express();
 
-app.get("/api/hello", (req, res) => {
-  res.send({ express: "Hello From Express" });
-});
+// Middleware
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser());
 
-app.get("/api/customers", (req, res) => {
-  const customers = [
-    { id: 1, firstName: "John", lastName: "Doe" },
-    { id: 2, firstName: "Brad", lastName: "Traversy" },
-    { id: 3, firstName: "Mary", lastName: "Swanson" }
-  ];
+// Add routes
+require("./routes")(app);
 
-  res.json(customers);
-});
-
-//
 // Production
-//
+// Serve bundle created by react-scripts build
 if (process.env.NODE_ENV === "production") {
   // Look for static files in "client/build" folder
   app.use(express.static(path.join(__dirname, "client/build")));
